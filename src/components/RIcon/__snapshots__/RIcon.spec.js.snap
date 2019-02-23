@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RIcon should render icon 1`] = `
+<svg width="12" height="12" viewBox="0 0 18 18" class="r-icon">
+  <use xlink:href="img/icons.svg#eye"></use>
+</svg>
+`;
