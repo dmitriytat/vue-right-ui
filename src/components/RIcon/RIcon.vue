@@ -4,6 +4,7 @@
     :height="dimensions.height"
     :viewBox="glyph.viewBox"
     class="r-icon"
+    :aria-hidden="!standalone"
   >
     <use :xlink:href="glyph.url" />
   </svg>
@@ -40,8 +41,16 @@ export default {
      */
     glyph: {
       type: Object,
-      default: () => ({}),
       required: true,
+    },
+
+    /**
+     * Icon is used without text.
+     * Probably you need to use aria-label to describe it.
+     */
+    standalone: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -70,9 +79,19 @@ export default {
   ```jsx
   const eyeIcon = require('@/assets/icons/eye.svg').default;
   <div>
-    <r-icon :glyph="eyeIcon" size="small" />
+    <r-icon :glyph="eyeIcon" standalone size="small" />
     <r-icon :glyph="eyeIcon" size="medium" />
     <r-icon :glyph="eyeIcon" size="large" />
+  </div>
+  ```
+
+  ```jsx
+  const eyeIcon = require('@/assets/icons/eye.svg').default;
+  <div>
+    <r-icon :glyph="eyeIcon" size="medium" standalone aria-label="eye icon" />
+      - standalone icon with aria label;<br>
+    <r-icon :glyph="eyeIcon" size="medium" />
+      - decorative icon without aria label.
   </div>
   ```
 </docs>
