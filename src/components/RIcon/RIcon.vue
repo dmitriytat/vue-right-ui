@@ -85,13 +85,15 @@ export default {
   </div>
   ```
 
+  Standalone icon with aria label
   ```jsx
   const eyeIcon = require('@/assets/icons/eye.svg').default;
-  <div>
-    <r-icon :glyph="eyeIcon" size="medium" standalone aria-label="eye icon" />
-      - standalone icon with aria label;<br>
-    <r-icon :glyph="eyeIcon" size="medium" />
-      - decorative icon without aria label.
-  </div>
+  <r-icon :glyph="eyeIcon" size="medium" standalone aria-label="eye icon" />
+  ```
+
+  Decorative icon without aria label
+  ```jsx
+  const eyeIcon = require('@/assets/icons/eye.svg').default;
+  <r-icon :glyph="eyeIcon" size="medium" />
   ```
 </docs>
