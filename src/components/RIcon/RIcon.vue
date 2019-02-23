@@ -5,6 +5,7 @@
     :viewBox="glyph.viewBox"
     class="r-icon"
     :aria-hidden="!standalone"
+    :role="standalone ? 'img' : undefined"
   >
     <use :xlink:href="glyph.url" />
   </svg>

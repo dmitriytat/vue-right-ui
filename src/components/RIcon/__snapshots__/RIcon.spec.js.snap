@@ -7,7 +7,7 @@ exports[`RIcon should render icon 1`] = `
 `;
 
 exports[`RIcon should render standalone icon with aria-label 1`] = `
-<svg width="12" height="12" viewBox="0 0 18 18" ariaLabel="standalone icon" class="r-icon">
+<svg width="12" height="12" viewBox="0 0 18 18" role="img" ariaLabel="standalone icon" class="r-icon">
   <use xlink:href="img/icons.svg#eye"></use>
 </svg>
 `;
