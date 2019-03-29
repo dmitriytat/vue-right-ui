@@ -16,18 +16,18 @@ import sizeMixin from '@/mixins/sizeMixin';
 
 const SIZES = {
   small: {
-    width: 8,
-    height: 8,
-  },
-
-  medium: {
     width: 12,
     height: 12,
   },
 
-  large: {
+  medium: {
     width: 16,
     height: 16,
+  },
+
+  large: {
+    width: 20,
+    height: 20,
   },
 };
 

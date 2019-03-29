@@ -1,5 +1,12 @@
 module.exports = {
   pluginOptions: {
+    lintStyleOnBuild: true,
+    stylelint: {
+      fix: true,
+    },
+    css: {
+      modules: true,
+    },
     svgSprite: {
       dir: 'src/assets/icons',
       test: /\.(svg)(\?.*)?$/,

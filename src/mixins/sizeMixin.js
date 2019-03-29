@@ -7,6 +7,7 @@ const sizeMixin = {
   props: {
     /**
      * Size of the element
+     * `small, medium, large`
      */
     size: {
       type: String,
