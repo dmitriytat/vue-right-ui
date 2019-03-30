@@ -3,7 +3,7 @@
     :width="dimensions.width"
     :height="dimensions.height"
     :viewBox="glyph.viewBox"
-    class="r-icon"
+    :class="b()"
     :aria-hidden="!standalone"
     :role="standalone ? 'img' : undefined"
   >
@@ -33,6 +33,7 @@ const SIZES = {
 
 export default {
   name: 'RIcon',
+  block: 'r-icon',
 
   mixins: [sizeMixin],
 

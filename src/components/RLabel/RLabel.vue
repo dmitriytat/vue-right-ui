@@ -1,10 +1,7 @@
 <template>
   <label
     :for="forId"
-    class="r-label"
-    :class="{
-      'r-label_active': active,
-    }"
+    :class="b({ active })"
   >
     <slot />
   </label>
@@ -13,6 +10,7 @@
 <script>
 export default {
   name: 'RLabel',
+  block: 'r-label',
 
   props: {
     /**

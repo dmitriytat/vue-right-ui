@@ -1,28 +1,28 @@
 <template>
   <div
     :id="`${id}-field`"
-    class="r-field"
+    :class="b()"
   >
     <slot
       name="label"
       :active="active"
       :id="`${id}-label`"
       :forId="id"
-      class="r-field__label"
+      :class="b('label')"
     />
     <slot
       name="control"
       :id="id"
       :activate="activate"
       :deactivate="deactivate"
-      class="r-field__control"
+      :class="b('control')"
     />
     <slot
       name="error"
       :id="`${id}-error`"
       :validate="validate"
       :invalidate="invalidate"
-      class="r-field__error"
+      :class="b('error')"
     />
   </div>
 </template>
@@ -35,6 +35,7 @@ import '@/variables/fonts.css';
 
 export default {
   name: 'RField',
+  block: 'r-field',
 
   inheritAttrs: false,
 

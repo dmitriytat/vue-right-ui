@@ -1,16 +1,14 @@
 <template>
   <div
-    class="r-input"
-    :class="{
-      'r-input_invalid': invalid,
-      'r-input_disabled': disabled,
-      'r-input_left': iconPosition === 'left',
-      'r-input_right': iconPosition === 'right',
-    }"
+    :class="b({
+      invalid,
+      disabled,
+      position: iconPosition,
+    })"
   >
     <input
       ref="input"
-      class="r-input__input"
+      :class="b('input')"
       v-bind="attrs"
       v-on="listeners"
       :value="value"
@@ -20,7 +18,7 @@
     >
     <div
       v-if="$slots.icon"
-      class="r-input__icon"
+      :class="b('icon')"
     >
       <slot name="icon"></slot>
     </div>
@@ -37,6 +35,7 @@ import { KEYBOARD_CODES } from '../../keyboard';
 
 export default {
   name: 'RInput',
+  block: 'r-input',
 
   inheritAttrs: false,
 
@@ -225,19 +224,19 @@ export default {
       padding: 6px 0 12px;
     }
 
-    &_left &__input {
+    &_position_left &__input {
       padding-left: 24px;
     }
 
-    &_left &__icon {
+    &_position_left &__icon {
       left: 0;
     }
 
-    &_right &__input {
+    &_position_right &__input {
       padding-right: 24px;
     }
 
-    &_right &__icon {
+    &_position_right &__icon {
       right: 0;
     }
   }
