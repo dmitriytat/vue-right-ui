@@ -3,11 +3,11 @@
     :width="dimensions.width"
     :height="dimensions.height"
     :viewBox="glyph.viewBox"
-    class="r-icon"
+    :class="b()"
     :aria-hidden="!standalone"
     :role="standalone ? 'img' : undefined"
   >
-    <use :xlink:href="glyph.url" />
+    <use :xlink:href="`#${glyph.id}`" />
   </svg>
 </template>
 
@@ -16,23 +16,24 @@ import sizeMixin from '@/mixins/sizeMixin';
 
 const SIZES = {
   small: {
-    width: 8,
-    height: 8,
-  },
-
-  medium: {
     width: 12,
     height: 12,
   },
 
-  large: {
+  medium: {
     width: 16,
     height: 16,
+  },
+
+  large: {
+    width: 20,
+    height: 20,
   },
 };
 
 export default {
   name: 'RIcon',
+  block: 'r-icon',
 
   mixins: [sizeMixin],
 
@@ -79,10 +80,16 @@ export default {
 
   ```jsx
   const eyeIcon = require('@/assets/icons/eye.svg').default;
+  const searchIcon = require('@/assets/icons/search.svg').default;
   <div>
     <r-icon :glyph="eyeIcon" standalone size="small" />
     <r-icon :glyph="eyeIcon" size="medium" />
     <r-icon :glyph="eyeIcon" size="large" />
+  </div>
+  <div>
+    <r-icon :glyph="searchIcon" standalone size="small" />
+    <r-icon :glyph="searchIcon" size="medium" />
+    <r-icon :glyph="searchIcon" size="large" />
   </div>
   ```
 

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RLabel should render active label 1`] = `<label for="input" id="label" class="r-label r-label_active"></label>`;
+
+exports[`RLabel should render label 1`] = `<label for="input" id="label" class="r-label"></label>`;
