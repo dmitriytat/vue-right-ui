@@ -1,8 +1,24 @@
 const path = require('path');
 
 module.exports = {
-  title: 'Right UI Style Guide',
-  components: 'src/components/**/[A-Z]*.vue',
+  title: 'Right UI',
+
+  sections: [
+    {
+      name: 'Introduction',
+      content: 'docs/introduction.md'
+    },
+    {
+      name: 'UI Components',
+      components: 'src/components/**/[A-Z]*.vue',
+    },
+    {
+      name: 'Examples',
+      components: 'src/examples/**/[A-Z]*.vue',
+    }
+  ],
+
   defaultExample: false,
-  require: [path.join(__dirname, 'styleguide.global.requires.js')],
+  webpackConfig: require(path.join(__dirname, 'webpack.config.js')),
+  require: [path.join(__dirname, 'styleguide.setup.js')],
 };
