@@ -4,22 +4,32 @@
     :class="b()"
   >
     <slot
+      :id="`${id}-label`"
       name="label"
       :active="active"
-      :id="`${id}-label`"
+      :focused="focused"
+      :invalid="invalid"
       :forId="id"
       :class="b('label')"
     />
     <slot
-      name="control"
       :id="id"
+      name="control"
       :activate="activate"
       :deactivate="deactivate"
+      :focus="focus"
+      :blur="blur"
+      :active="active"
+      :focused="focused"
+      :invalid="invalid"
       :class="b('control')"
     />
     <slot
-      name="error"
       :id="`${id}-error`"
+      name="error"
+      :active="active"
+      :focused="focused"
+      :invalid="invalid"
       :validate="validate"
       :invalidate="invalidate"
       :class="b('error')"
@@ -53,6 +63,7 @@ export default {
     return {
       active: false,
       invalid: false,
+      focused: false,
     };
   },
 
@@ -76,6 +87,14 @@ export default {
     invalidate() {
       this.invalid = true;
     },
+
+    focus() {
+      this.focused = true;
+    },
+
+    blur() {
+      this.focused = false;
+    },
   },
 };
 </script>
@@ -83,22 +102,28 @@ export default {
 <docs>
   ```jsx
   const eyeIcon = require('@/assets/icons/eye.svg').default;
+  let value = '';
   <r-field id="user-name">
     <r-label
       slot="label"
-      slot-scope="{ id, forId, active }"
+      slot-scope="{ id, forId, active, focused, invalid }"
       :id="id"
       :for-id="forId"
       :active="active"
+      :invalid="invalid"
+      :focused="focused"
     >
       Password
     </r-label>
     <r-input
       slot="control"
-      slot-scope="{ id, activate, deactivate }"
+      slot-scope="{ id, activate, deactivate, focus, blur }"
       :id="id"
       @activate="activate"
       @deactivate="deactivate"
+      @focus="focus"
+      @blur="blur"
+      v-model="value"
     >
       <r-icon
         slot="icon"

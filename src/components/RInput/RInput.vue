@@ -3,15 +3,17 @@
     :class="b({
       invalid,
       disabled,
-      position: iconPosition,
+      'i-position': $slots.icon && iconPosition,
+      'b-position': $slots.button && buttonPosition,
     })"
   >
     <input
       ref="input"
       :class="b('input')"
       v-bind="attrs"
-      v-on="listeners"
       :value="value"
+      v-on="listeners"
+      @input="handleInput"
       @keydown="handleKeyDown"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -20,7 +22,13 @@
       v-if="$slots.icon"
       :class="b('icon')"
     >
-      <slot name="icon"></slot>
+      <slot name="icon" />
+    </div>
+    <div
+      v-if="$slots.button"
+      :class="b('button')"
+    >
+      <slot name="button" />
     </div>
   </div>
 </template>
@@ -69,6 +77,18 @@ export default {
     },
 
     /**
+     * Button position
+     * `left, right`
+     */
+    buttonPosition: {
+      type: String,
+      default: 'right',
+      validator(value) {
+        return ['left', 'right'].includes(value);
+      },
+    },
+
+    /**
      * Is input invalid
      */
     invalid: {
@@ -91,7 +111,9 @@ export default {
     },
 
     listeners() {
-      return this.$listeners;
+      const { focus, blur, input, keydown, ...listeners } = this.$listeners;
+
+      return listeners;
     },
   },
 
@@ -106,6 +128,18 @@ export default {
   },
 
   methods: {
+    handleInput(event) {
+      const value = event.currentTarget.value;
+
+      /**
+       * Input event.
+       *
+       * @event keydown
+       * @type {string}
+       */
+      this.$emit('input', value);
+    },
+
     handleKeyDown(event) {
       if (this.disabled && event.which !== KEYBOARD_CODES.Tab) {
         event.preventDefault();
@@ -221,22 +255,46 @@ export default {
       top: 0;
       box-sizing: border-box;
       height: 40px;
-      padding: 6px 0 12px;
+      padding: 8px 0 14px;
     }
 
-    &_position_left &__input {
+    &_i-position_left &__input {
       padding-left: 24px;
     }
 
-    &_position_left &__icon {
+    &_i-position_left &__icon {
       left: 0;
     }
 
-    &_position_right &__input {
+    &_i-position_right &__input {
       padding-right: 24px;
     }
 
-    &_position_right &__icon {
+    &_i-position_right &__icon {
+      right: 0;
+    }
+
+    &__button {
+      position: absolute;
+      top: 0;
+      box-sizing: border-box;
+      width: 30px;
+      height: 40px;
+    }
+
+    &_b-position_left &__input {
+      padding-left: 30px;
+    }
+
+    &_b-position_left &__button {
+      left: 0;
+    }
+
+    &_b-position_right &__input {
+      padding-right: 30px;
+    }
+
+    &_b-position_right &__button {
       right: 0;
     }
   }
@@ -244,24 +302,32 @@ export default {
 
 <docs>
   ```jsx
-  <r-input id="r-input" />
+  let value = '';
+  <r-input
+    id="r-input"
+    v-model="value"
+  />
   ```
 
   RInput with placeholder
 
   ```jsx
+  let value = '';
   <r-input
     id="r-input-with-placeholder"
     placeholder="placeholder"
+    v-model="value"
   />
   ```
 
   Invalid RInput
 
   ```jsx
+  let value = '';
   <r-input
     id="r-input-with-placeholder"
     value="Hello"
+    v-model="value"
     invalid
   />
   ```
@@ -269,8 +335,10 @@ export default {
   Disabled RInput
 
   ```jsx
+  let value = '';
   <r-input
     id="r-input-disabled"
+    v-model="value"
     disabled
   />
   ```
@@ -278,17 +346,35 @@ export default {
   RInput with icon
 
   ```jsx
+  const searchIcon = require('@/assets/icons/search.svg').default;
   const eyeIcon = require('@/assets/icons/eye.svg').default;
-  <r-input id="r-input-with-icon">
+  let value = '';
+  <r-input
+    id="r-input-with-icon"
+    v-model="value"
+  >
     <r-icon
       slot="icon"
       :glyph="eyeIcon"
     />
   </r-input>
-  <r-input id="r-input-with-icon" icon-position="left">
+  <r-input
+    id="r-input-with-icon"
+    v-model="value"
+  >
     <r-icon
       slot="icon"
-      :glyph="eyeIcon"
+      :glyph="searchIcon"
+    />
+  </r-input>
+  <r-input
+    id="r-input-with-icon"
+    icon-position="left"
+    v-model="value"
+  >
+    <r-icon
+      slot="icon"
+      :glyph="searchIcon"
     />
   </r-input>
   ```
