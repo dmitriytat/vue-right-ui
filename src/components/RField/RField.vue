@@ -101,7 +101,7 @@ export default {
 
 <docs>
   ```jsx
-  const eyeIcon = require('@/assets/icons/eye.svg').default;
+  const searchIcon = require('@/assets/icons/search.svg').default;
   let value = '';
   <r-field id="user-name">
     <r-label
@@ -113,7 +113,7 @@ export default {
       :invalid="invalid"
       :focused="focused"
     >
-      Password
+      Search
     </r-label>
     <r-input
       slot="control"
@@ -127,7 +127,7 @@ export default {
     >
       <r-icon
         slot="icon"
-        :glyph="eyeIcon"
+        :glyph="searchIcon"
       />
     </r-input>
   </r-field>

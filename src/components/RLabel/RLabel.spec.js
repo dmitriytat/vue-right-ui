@@ -10,6 +10,7 @@ describe('RLabel', () => {
     const wrapper = shallowMount(RLabel, {
       propsData: {
         id: 'label',
+        forId: 'input',
       },
     });
 
@@ -24,6 +25,7 @@ describe('RLabel', () => {
     const wrapper = shallowMount(RLabel, {
       propsData: {
         id: 'label',
+        forId: 'input',
         active: true,
       },
     });
