@@ -45,7 +45,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.1.2",
     "postcss-preset-env": "^6.6.0",
-    "stylelint": "^9.10.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-rational-order": "0.0.4",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-webpack-plugin": "^0.10.5",
